@@ -51,6 +51,7 @@ CREATE TABLE REQUEST (
 RequestID INT IDENTITY (1,1) PRIMARY KEY,
 PartnershipID INT FOREIGN KEY REFERENCES PARTNERSHIP(PartnershipID),
 LocationID INT FOREIGN KEY REFERENCES REQUEST_LOCATION(LocationID),
+InterviewID INT FOREIGN KEY REFERENCES REQUEST(InterviewID),
 Date DateTime NOT NULL,
 EventName VARCHAR (100) NOT NULL
 )
@@ -187,7 +188,7 @@ VALUES ('Amanda Kensith' , 'Morning Reporter')
 INSERT INTO TALENT (TalentName , TalentTitle)
 VALUES ('Cecil Chandler' , 'Anchor')
 
-INSERT INTO INTERVIEW (IInterviewDescription)
+INSERT INTO INTERVIEW (InterviewDescription)
 VALUES ('Interview with Ed during the 5p, 6p, 7p newscasts and live weather')
 
 INSERT INTO INTERVIEW (InterviewDescription)
@@ -234,6 +235,3 @@ JOIN CLIENT ON REQUEST.PartnershipID = CLIENT.ClientID
 GO
 
 EXEC dbo.InterviewForEvent
-
-ALTER TABLE REQUEST
-ADD FOREIGN KEY (InterviewID) REFERENCES INTERVIEW (InterviewID)
